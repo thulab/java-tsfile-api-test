@@ -289,14 +289,14 @@ public class TestITsFileReader {
             filterBuilder.eq(columnName1, "Tag1_Value_3");
             assert false : "预期报错但是没有报错";
         } catch (IllegalArgumentException e) {
-            assert e.getMessage().equals("列 '" + columnName1 + "' 不是 tag column") : "实际报错与预期不一致，预期：Column '" + columnName1 + "' 不是 tag column，实际：" + e.getMessage();
+            assert e.getMessage().equals("Column '" + columnName1 + "' is not a tag column") : "实际报错与预期不一致，预期：Column '" + columnName1 + "' is not a tag column，实际：" + e.getMessage();
         }
         String columnName2 = "nonExistColumn";
         try {
             filterBuilder.not(filterBuilder.eq(columnName2, "Tag1_Value_2"));
             assert false : "预期报错但是没有报错";
         } catch (IllegalArgumentException e) {
-            assert e.getMessage().equals("列 '" + columnName2 + "' 不是 tag column") : "实际报错与预期不一致，预期：Column '" + columnName2 + "' 不是 tag column，实际：" + e.getMessage();
+            assert e.getMessage().equals("Column '" + columnName2 + "' is not a tag column") : "实际报错与预期不一致，预期：Column '" + columnName2 + "' is not a tag column，实际：" + e.getMessage();
         }
 
         // 2.不是TAG列
@@ -305,7 +305,7 @@ public class TestITsFileReader {
             filterBuilder.eq(columnName3, "");
             assert false : "预期报错但是没有报错";
         } catch (IllegalArgumentException e) {
-            assert e.getMessage().equals("列 '" + columnName3 + "' 不是 tag column") : "实际报错与预期不一致，预期：Column '" + columnName3 + "' 不是 tag column，实际：" + e.getMessage();
+            assert e.getMessage().equals("Column '" + columnName3 + "' is not a tag column") : "实际报错与预期不一致，预期：Column '" + columnName3 + "' is not a tag column，实际：" + e.getMessage();
         }
 
         // 3. value 或 Pattern 为空

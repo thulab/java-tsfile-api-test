@@ -31,13 +31,33 @@
 
     <build>
         <plugins>
+            <!-- 测试执行插件：显式声明以配置 argLine，开启断言并兼容 jacoco -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <!--
+                        @{argLine} 接住 jacoco prepare-agent 注入的 agent 参数（jacoco 0.8.8 默认写入名为 argLine 的属性），
+                        再追加 -ea 开启断言。必须用 @{argLine}（Maven late replacement）而非 ${argLine}：
+                        直接写死 <argLine>-ea</argLine> 会覆盖 jacoco agent 导致覆盖率归零；
+                        @{} 在属性缺失（无 jacoco 时）会安全替换为空，不会报错。
+
+                        -Dtsfile.locale=en：锁定 tsfile 的 i18n 错误消息为英文，不受运行环境 locale（如 zh_CN）影响，
+                        使异常 message 断言稳定。tsfile 的 Messages 类在类加载时解析一次 locale，system property
+                        优先级最高，故必须经此传入（测试代码里 Locale.setDefault 有加载时序风险，不可靠）。
+                    -->
+                    <argLine>@{argLine} -ea -Dtsfile.locale=en</argLine>
+                </configuration>
+            </plugin>
+
             <!-- 可以生成一个HTML格式的测试报告，显示测试结果的详细信息 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
-            
+
             <!-- Maven 编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

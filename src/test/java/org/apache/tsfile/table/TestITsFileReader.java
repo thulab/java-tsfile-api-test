@@ -19,6 +19,7 @@ import org.apache.tsfile.read.v4.TsFileReaderBuilder;
 import org.apache.tsfile.write.record.Tablet;
 import org.apache.tsfile.write.v4.ITsFileWriter;
 import org.apache.tsfile.write.v4.TsFileWriterBuilder;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utils.ParserCSV;
@@ -146,53 +147,20 @@ public class TestITsFileReader {
              ResultSet resultSet = reader.query(tableName, columnNameList, Long.MIN_VALUE, Long.MAX_VALUE)) {
             ResultSetMetadata metadata = resultSet.getMetadata();
             // 验证 Time 列的元数据
-            assert metadata.getColumnName(1).equals("Time");
-            assert metadata.getColumnType(1).equals(TSDataType.INT64);
+            Assert.assertEquals(metadata.getColumnName(1), "Time");
+            Assert.assertEquals(metadata.getColumnType(1), TSDataType.INT64);
             // 验证其他列的元数据
             for (int i = 0; i < columnNameList.size(); i++) {
-                assert metadata.getColumnName(i + 2).equals(columnNameList.get(i));
+                Assert.assertEquals(metadata.getColumnName(i + 2), columnNameList.get(i));
             }
             for (int i = 0; i < dataTypeList.size(); i++) {
-                assert metadata.getColumnType(i + 2).equals(dataTypeList.get(i));
+                Assert.assertEquals(metadata.getColumnType(i + 2), dataTypeList.get(i));
             }
             // 验证数据
             while (resultSet.next()) {
-//                StringBuilder stringBuilder = new StringBuilder();
-//                stringBuilder.append(resultSet.getLong("Time")).append(" ");
-//                for (int i = 0; i < columnNameList.size(); i++) {
-//                    switch (dataTypeList.get(i)) {
-//                        case BLOB:
-//                        case TEXT:
-//                        case STRING:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getString(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case INT32:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getInt(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case BOOLEAN:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getBoolean(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case INT64:
-//                        case TIMESTAMP:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getLong(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case FLOAT:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getFloat(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case DOUBLE:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getDouble(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case DATE:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getDate(columnNameList.get(i))).append(" ");
-//                            break;
-//                        default:
-//                            throw new IllegalArgumentException("Unsupported data type: " + dataTypeList.get(i));
-//                    }
-//                }
-//                System.out.println(stringBuilder);
                 actualRowNum++;
             }
-            assert actualRowNum == expectRowNum : "Actual row number: " + actualRowNum + ", expected row number: " + expectRowNum;
+            Assert.assertEquals(actualRowNum, expectRowNum, "查询返回行数与预期不一致");
         }
     }
 
@@ -283,72 +251,49 @@ public class TestITsFileReader {
     @Test
     public void testQuery2Exception() {
         TagFilterBuilder filterBuilder = new TagFilterBuilder(tableSchema);
-        // 1.列名不存在
+
+        // 1.列名不存在（i18n 文案，pom 已锁 -Dtsfile.locale=en，断言英文）
         String columnName1 = "nonExistColumn";
-        try {
-            filterBuilder.eq(columnName1, "Tag1_Value_3");
-            assert false : "预期报错但是没有报错";
-        } catch (IllegalArgumentException e) {
-            assert e.getMessage().equals("Column '" + columnName1 + "' is not a tag column") : "实际报错与预期不一致，预期：Column '" + columnName1 + "' is not a tag column，实际：" + e.getMessage();
-        }
+        IllegalArgumentException e1 =
+                Assert.expectThrows(IllegalArgumentException.class, () -> filterBuilder.eq(columnName1, "Tag1_Value_3"));
+        Assert.assertEquals(e1.getMessage(), "Column '" + columnName1 + "' is not a tag column");
+
         String columnName2 = "nonExistColumn";
-        try {
-            filterBuilder.not(filterBuilder.eq(columnName2, "Tag1_Value_2"));
-            assert false : "预期报错但是没有报错";
-        } catch (IllegalArgumentException e) {
-            assert e.getMessage().equals("Column '" + columnName2 + "' is not a tag column") : "实际报错与预期不一致，预期：Column '" + columnName2 + "' is not a tag column，实际：" + e.getMessage();
-        }
+        IllegalArgumentException e2 =
+                Assert.expectThrows(IllegalArgumentException.class, () -> filterBuilder.not(filterBuilder.eq(columnName2, "Tag1_Value_2")));
+        Assert.assertEquals(e2.getMessage(), "Column '" + columnName2 + "' is not a tag column");
 
         // 2.不是TAG列
         String columnName3 = columnNameList.get(columnNameList.size() - 1);
-        try {
-            filterBuilder.eq(columnName3, "");
-            assert false : "预期报错但是没有报错";
-        } catch (IllegalArgumentException e) {
-            assert e.getMessage().equals("Column '" + columnName3 + "' is not a tag column") : "实际报错与预期不一致，预期：Column '" + columnName3 + "' is not a tag column，实际：" + e.getMessage();
-        }
+        IllegalArgumentException e3 =
+                Assert.expectThrows(IllegalArgumentException.class, () -> filterBuilder.eq(columnName3, ""));
+        Assert.assertEquals(e3.getMessage(), "Column '" + columnName3 + "' is not a tag column");
 
-        // 3. value 或 Pattern 为空
-        try {
-            filterBuilder.eq(columnNameList.get(0), null);
-            assert false : "预期报错但是没有报错";
-        } catch (NullPointerException e) {
-            assert e.getMessage().equals("constant cannot be null") : "实际报错与预期不一致，预期：constant cannot be null，实际：" + e.getMessage();
-        }
-        try {
-            filterBuilder.betweenAnd(columnNameList.get(0), null, "Tag1_Value_2");
-            assert false : "预期报错但是没有报错";
-        } catch (NullPointerException e) {
-            assert e.getMessage().equals("min cannot be null") : "实际报错与预期不一致，预期：min cannot be null，实际：" + e.getMessage();
-        }
-        try {
-            filterBuilder.betweenAnd(columnNameList.get(0), "Tag1_Value_2", null);
-            assert false : "预期报错但是没有报错";
-        } catch (NullPointerException e) {
-            assert e.getMessage().equals("max cannot be null") : "实际报错与预期不一致，预期：max cannot be null，实际：" + e.getMessage();
-        }
+        // 3. value 或 Pattern 为空（硬编码英文，不随 locale 变）
+        NullPointerException e4 =
+                Assert.expectThrows(NullPointerException.class, () -> filterBuilder.eq(columnNameList.get(0), null));
+        Assert.assertEquals(e4.getMessage(), "constant cannot be null");
+
+        NullPointerException e5 =
+                Assert.expectThrows(NullPointerException.class, () -> filterBuilder.betweenAnd(columnNameList.get(0), null, "Tag1_Value_2"));
+        Assert.assertEquals(e5.getMessage(), "min cannot be null");
+
+        NullPointerException e6 =
+                Assert.expectThrows(NullPointerException.class, () -> filterBuilder.betweenAnd(columnNameList.get(0), "Tag1_Value_2", null));
+        Assert.assertEquals(e6.getMessage(), "max cannot be null");
 
         // 4. filter为null
-        try {
-            filterBuilder.and(null, filterBuilder.eq(columnNameList.get(0), "Tag1_Value_2"));
-            assert false : "预期报错但是没有报错";
-        } catch (NullPointerException e) {
-            assert e.getMessage().equals("left cannot be null") : "实际报错与预期不一致，预期：left cannot be null，实际：" + e.getMessage();
-        }
-        try {
-            filterBuilder.and(filterBuilder.eq(columnNameList.get(0), "Tag1_Value_2"), null);
-            assert false : "预期报错但是没有报错";
-        } catch (NullPointerException e) {
-            assert e.getMessage().equals("right cannot be null") : "实际报错与预期不一致，预期：right cannot be null，实际：" + e.getMessage();
-        }
-        try {
-            filterBuilder.not(null);
-            assert false : "预期报错但是没有报错";
-        } catch (NullPointerException e) {
-            assert e.getMessage().equals("filter cannot be null") : "实际报错与预期不一致，预期：filter cannot be null，实际：" + e.getMessage();
-        }
+        NullPointerException e7 =
+                Assert.expectThrows(NullPointerException.class, () -> filterBuilder.and(null, filterBuilder.eq(columnNameList.get(0), "Tag1_Value_2")));
+        Assert.assertEquals(e7.getMessage(), "left cannot be null");
 
+        NullPointerException e8 =
+                Assert.expectThrows(NullPointerException.class, () -> filterBuilder.and(filterBuilder.eq(columnNameList.get(0), "Tag1_Value_2"), null));
+        Assert.assertEquals(e8.getMessage(), "right cannot be null");
 
+        NullPointerException e9 =
+                Assert.expectThrows(NullPointerException.class, () -> filterBuilder.not(null));
+        Assert.assertEquals(e9.getMessage(), "filter cannot be null");
     }
 
     private void queryWithFilter(Filter filter, int expectRowNum) throws IOException, ReadProcessException, NoTableException, NoMeasurementException {
@@ -357,53 +302,20 @@ public class TestITsFileReader {
              ResultSet resultSet = reader.query(tableName, columnNameList, Long.MIN_VALUE, Long.MAX_VALUE, filter)) {
             ResultSetMetadata metadata = resultSet.getMetadata();
             // 验证 Time 列的元数据
-            assert metadata.getColumnName(1).equals("Time");
-            assert metadata.getColumnType(1).equals(TSDataType.INT64);
+            Assert.assertEquals(metadata.getColumnName(1), "Time");
+            Assert.assertEquals(metadata.getColumnType(1), TSDataType.INT64);
             // 验证其他列的元数据
             for (int i = 0; i < columnNameList.size(); i++) {
-                assert metadata.getColumnName(i + 2).equals(columnNameList.get(i));
+                Assert.assertEquals(metadata.getColumnName(i + 2), columnNameList.get(i));
             }
             for (int i = 0; i < dataTypeList.size(); i++) {
-                assert metadata.getColumnType(i + 2).equals(dataTypeList.get(i));
+                Assert.assertEquals(metadata.getColumnType(i + 2), dataTypeList.get(i));
             }
             // 验证数据
             while (resultSet.next()) {
-//                StringBuilder stringBuilder = new StringBuilder();
-//                stringBuilder.append(resultSet.getLong("Time")).append(" ");
-//                for (int i = 0; i < columnNameList.size(); i++) {
-//                    switch (dataTypeList.get(i)) {
-//                        case BLOB:
-//                        case TEXT:
-//                        case STRING:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getString(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case INT32:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getInt(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case BOOLEAN:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getBoolean(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case INT64:
-//                        case TIMESTAMP:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getLong(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case FLOAT:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getFloat(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case DOUBLE:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getDouble(columnNameList.get(i))).append(" ");
-//                            break;
-//                        case DATE:
-//                            stringBuilder.append(resultSet.isNull(columnNameList.get(i)) ? null : resultSet.getDate(columnNameList.get(i))).append(" ");
-//                            break;
-//                        default:
-//                            throw new IllegalArgumentException("Unsupported data type: " + dataTypeList.get(i));
-//                    }
-//                }
-//                System.out.println(stringBuilder);
                 actualRowNum++;
             }
-            assert actualRowNum == expectRowNum : "Actual row number: " + actualRowNum + ", expected row number: " + expectRowNum;
+            Assert.assertEquals(actualRowNum, expectRowNum, "过滤查询返回行数与预期不一致");
         }
     }
 

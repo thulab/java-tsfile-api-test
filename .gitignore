@@ -33,3 +33,11 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### 本地测试/覆盖率产物（不入库）###
+# 覆盖率测试时手动拷入的 tsfile 源码（保留 code/src/README.md）
+code/src/org/
+# 测试运行生成的 tsfile 数据文件（保留 data/tsfile/README.md）
+data/tsfile/*.tsfile
+# Claude Code 会话产物
+.claude/

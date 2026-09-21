@@ -31,6 +31,7 @@ public class TestTsFileWriterBuilder {
     }
   }
 
+// 用例 JAVA-TABLE-042：空文件路径Writer异常
   @Test
   public void testNullFileThrows() {
     IllegalArgumentException e =
@@ -40,6 +41,7 @@ public class TestTsFileWriterBuilder {
     Assert.assertEquals(e.getMessage(), "The file must be a non-null and non-directory File.");
   }
 
+// 用例 JAVA-TABLE-043：目录路径Writer异常
   @Test
   public void testDirectoryFileThrows() {
     File dir = FSFactoryProducer.getFSFactory().getFile("data/tsfile");
@@ -50,6 +52,7 @@ public class TestTsFileWriterBuilder {
     Assert.assertEquals(e.getMessage(), "The file must be a non-null and non-directory File.");
   }
 
+// 用例 JAVA-TABLE-044：空Schema Writer异常
   @Test
   public void testNullSchemaThrows() {
     IllegalArgumentException e =
@@ -59,6 +62,7 @@ public class TestTsFileWriterBuilder {
     Assert.assertEquals(e.getMessage(), "TableSchema must not be null.");
   }
 
+// 用例 JAVA-TABLE-045：非正内存阈值异常
   @Test
   public void testNonPositiveMemoryThresholdThrows() {
     IllegalArgumentException zero =
@@ -85,6 +89,7 @@ public class TestTsFileWriterBuilder {
   }
 
   /** 极小 memoryThreshold 触发多次 flush；写入 100 行后应能完整读回。 */
+// 用例 JAVA-TABLE-046：极小内存阈值读写验证
   @Test
   public void testSmallMemoryThresholdStillReadsBack() throws Exception {
     if (f.exists()) {

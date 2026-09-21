@@ -37,6 +37,7 @@ public class TestReaderSchemaApi {
     }
   }
 
+// 用例 JAVA-TABLE-010：获取已存在表Schema
   @Test
   public void testGetTableSchemasExisting() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build()) {
@@ -56,6 +57,7 @@ public class TestReaderSchemaApi {
     }
   }
 
+// 用例 JAVA-TABLE-011：获取不存在表Schema返回空
   @Test
   public void testGetTableSchemasNonExisting() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build()) {
@@ -64,6 +66,7 @@ public class TestReaderSchemaApi {
     }
   }
 
+// 用例 JAVA-TABLE-012：获取全部表Schema列表
   @Test
   public void testGetAllTableSchema() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build()) {

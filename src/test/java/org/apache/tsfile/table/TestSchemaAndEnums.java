@@ -16,6 +16,7 @@ public class TestSchemaAndEnums {
 
   // ---------------- ColumnSchemaBuilder ----------------
 
+// 用例 JAVA-TABLE-018：缺少列名抛出异常
   @Test
   public void testBuilderMissingNameThrows() {
     IllegalStateException e =
@@ -25,6 +26,7 @@ public class TestSchemaAndEnums {
     Assert.assertEquals(e.getMessage(), "Column name must be set before building");
   }
 
+// 用例 JAVA-TABLE-019：缺少列类型抛出异常
   @Test
   public void testBuilderMissingTypeThrows() {
     IllegalStateException e =
@@ -34,6 +36,7 @@ public class TestSchemaAndEnums {
     Assert.assertEquals(e.getMessage(), "Column data type must be set before building");
   }
 
+// 用例 JAVA-TABLE-020：空列名抛出异常
   @Test
   public void testBuilderEmptyNameThrows() {
     IllegalArgumentException e =
@@ -41,6 +44,7 @@ public class TestSchemaAndEnums {
     Assert.assertEquals(e.getMessage(), "Column name must be a non empty string");
   }
 
+// 用例 JAVA-TABLE-021：默认列类型为Field
   @Test
   public void testBuilderDefaultCategoryIsField() {
     ColumnSchema cs = new ColumnSchemaBuilder().name("c1").dataType(TSDataType.INT32).build();
@@ -49,6 +53,7 @@ public class TestSchemaAndEnums {
 
   // ---------------- TableSchema ----------------
 
+// 用例 JAVA-TABLE-022：重复列名抛出异常
   @Test
   public void testDuplicateColumnThrows() {
     ColumnSchema c1 = new ColumnSchemaBuilder().name("dup").dataType(TSDataType.INT32).category(ColumnCategory.FIELD).build();
@@ -59,6 +64,7 @@ public class TestSchemaAndEnums {
     Assert.assertEquals(e.getMessage(), "Each column name in the table should be unique(case insensitive).");
   }
 
+// 用例 JAVA-TABLE-023：按列名查找列索引（大小写不敏感）
   @Test
   public void testFindColumnIndexCaseInsensitive() {
     ColumnSchema tag = new ColumnSchemaBuilder().name("Tag1").dataType(TSDataType.STRING).category(ColumnCategory.TAG).build();
@@ -73,6 +79,7 @@ public class TestSchemaAndEnums {
 
   // ---------------- TSDataType ----------------
 
+// 用例 JAVA-TABLE-024：非法字节编码异常
   @Test
   public void testGetTsDataTypeInvalidByteThrows() {
     IllegalArgumentException e =
@@ -80,6 +87,7 @@ public class TestSchemaAndEnums {
     Assert.assertTrue(e.getMessage().startsWith("Invalid input:"), "非法字节文案应以 Invalid input: 开头，实际：" + e.getMessage());
   }
 
+// 用例 JAVA-TABLE-025：列类型判断谓词验证
   @Test
   public void testTypePredicates() {
     Assert.assertTrue(TSDataType.INT32.isNumeric());
@@ -92,6 +100,7 @@ public class TestSchemaAndEnums {
     Assert.assertFalse(TSDataType.INT64.isBinary());
   }
 
+// 用例 JAVA-TABLE-026：Schema序列化往返一致性
   @Test
   public void testSerializeDeserializeRoundTrip() {
     for (TSDataType t : TSDataType.values()) {
@@ -99,6 +108,7 @@ public class TestSchemaAndEnums {
     }
   }
 
+// 用例 JAVA-TABLE-027：不兼容类型转换抛出异常
   @Test
   public void testCastIncompatibleThrows() {
     // 不兼容转换应抛 ClassCastException（例如把 BOOLEAN 值当作 INT32 转换）

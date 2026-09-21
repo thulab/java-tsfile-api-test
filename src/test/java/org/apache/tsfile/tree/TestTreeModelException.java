@@ -28,6 +28,7 @@ public class TestTreeModelException {
   }
 
   /** 同一设备下重复注册同名非对齐时序应抛 WriteProcessException。 */
+// 用例 JAVA-TREE-001：重复注册设备异常
   @Test
   public void testDuplicateRegisterThrows() throws Exception {
     if (f.exists()) {
@@ -42,6 +43,7 @@ public class TestTreeModelException {
   }
 
   /** 对已注册为对齐时序的设备再注册非对齐时序应抛 WriteProcessException。 */
+// 用例 JAVA-TREE-002：对齐设备注册非对齐序列异常
   @Test
   public void testRegisterNonAlignedOnAlignedDeviceThrows() throws Exception {
     if (f.exists()) {

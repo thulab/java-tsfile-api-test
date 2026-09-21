@@ -40,4 +40,5 @@ code/src/org/
 # 测试运行生成的 tsfile 数据文件（保留 data/tsfile/README.md）
 data/tsfile/*.tsfile
 # Claude Code 会话产物
-.claude/
+.claude/reports/
+reports/

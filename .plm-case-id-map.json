@@ -1,0 +1,358 @@
+{
+ "nmap": {
+  "TsFile-232": [
+   "org.apache.tsfile.table.TestITsFileReader::testQuery1"
+  ],
+  "TsFile-233": [
+   "org.apache.tsfile.table.TestITsFileReader::testQuery2"
+  ],
+  "TsFile-234": [
+   "org.apache.tsfile.table.TestITsFileReader::testQuery2Exception"
+  ],
+  "TsFile-235": [
+   "org.apache.tsfile.table.TestQueryException::testUnknownTableThrows"
+  ],
+  "TsFile-236": [
+   "org.apache.tsfile.table.TestQueryException::testUnknownColumnThrows"
+  ],
+  "TsFile-237": [
+   "org.apache.tsfile.table.TestQueryException::testTimeRangeClosedInterval"
+  ],
+  "TsFile-238": [
+   "org.apache.tsfile.table.TestQueryException::testTimeRangeWindow"
+  ],
+  "TsFile-239": [
+   "org.apache.tsfile.table.TestQueryException::testCaseInsensitive"
+  ],
+  "TsFile-240": [
+   "org.apache.tsfile.table.TestReaderSchemaApi::testGetTableSchemasExisting"
+  ],
+  "TsFile-241": [
+   "org.apache.tsfile.table.TestReaderSchemaApi::testGetTableSchemasNonExisting"
+  ],
+  "TsFile-242": [
+   "org.apache.tsfile.table.TestReaderSchemaApi::testGetAllTableSchema"
+  ],
+  "TsFile-243": [
+   "org.apache.tsfile.table.TestResultSetGetter::testGettersByColumnName"
+  ],
+  "TsFile-244": [
+   "org.apache.tsfile.table.TestResultSetGetter::testGettersByColumnIndex"
+  ],
+  "TsFile-245": [
+   "org.apache.tsfile.table.TestResultSetGetter::testIterator"
+  ],
+  "TsFile-246": [
+   "org.apache.tsfile.table.TestResultSetGetter::testUnknownColumnThrows"
+  ],
+  "TsFile-247": [
+   "org.apache.tsfile.table.TestResultSetGetter::testIndexOutOfBoundThrows"
+  ],
+  "TsFile-248": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderMissingNameThrows"
+  ],
+  "TsFile-249": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderMissingTypeThrows"
+  ],
+  "TsFile-250": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderEmptyNameThrows"
+  ],
+  "TsFile-251": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderDefaultCategoryIsField"
+  ],
+  "TsFile-252": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testDuplicateColumnThrows"
+  ],
+  "TsFile-253": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testFindColumnIndexCaseInsensitive"
+  ],
+  "TsFile-254": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testGetTsDataTypeInvalidByteThrows"
+  ],
+  "TsFile-255": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testTypePredicates"
+  ],
+  "TsFile-256": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testSerializeDeserializeRoundTrip"
+  ],
+  "TsFile-257": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testCastIncompatibleThrows"
+  ],
+  "TsFile-258": [
+   "org.apache.tsfile.table.TestTabletApi::testAddValueByColumnIndex"
+  ],
+  "TsFile-259": [
+   "org.apache.tsfile.table.TestTabletApi::testAddValueWrongTypeThrows"
+  ],
+  "TsFile-260": [
+   "org.apache.tsfile.table.TestTabletApi::testMaxRowNumberAndReset"
+  ],
+  "TsFile-261": [
+   "org.apache.tsfile.table.TestTabletApi::testSerializeDeserializeRoundTrip"
+  ],
+  "TsFile-262": [
+   "org.apache.tsfile.table.TestTagFilterMore::testInvalidRegexThrows"
+  ],
+  "TsFile-263": [
+   "org.apache.tsfile.table.TestTagFilterMore::testNullRegexPatternThrows"
+  ],
+  "TsFile-264": [
+   "org.apache.tsfile.table.TestTagFilterMore::testNullLikePatternThrows"
+  ],
+  "TsFile-265": [
+   "org.apache.tsfile.table.TestTagFilterMore::testNonStringValueThrows"
+  ],
+  "TsFile-266": [
+   "org.apache.tsfile.table.TestTagFilterMore::testBetweenAndReversedRange"
+  ],
+  "TsFile-267": [
+   "org.apache.tsfile.table.TestTagFilterMore::testTagColumnCaseInsensitive"
+  ],
+  "TsFile-268": [
+   "org.apache.tsfile.table.TestTsFileReaderBuilder::testNullFileThrows"
+  ],
+  "TsFile-269": [
+   "org.apache.tsfile.table.TestTsFileReaderBuilder::testNonExistFileThrows"
+  ],
+  "TsFile-270": [
+   "org.apache.tsfile.table.TestTsFileReaderBuilder::testDirectoryThrows"
+  ],
+  "TsFile-271": [
+   "org.apache.tsfile.table.TestTsFileReaderBuilder::testGarbageFileThrows"
+  ],
+  "TsFile-272": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testNullFileThrows"
+  ],
+  "TsFile-273": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testDirectoryFileThrows"
+  ],
+  "TsFile-274": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testNullSchemaThrows"
+  ],
+  "TsFile-275": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testNonPositiveMemoryThresholdThrows"
+  ],
+  "TsFile-276": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testSmallMemoryThresholdStillReadsBack"
+  ],
+  "TsFile-277": [
+   "org.apache.tsfile.tree.TestTreeModelException::testDuplicateRegisterThrows"
+  ],
+  "TsFile-278": [
+   "org.apache.tsfile.tree.TestTreeModelException::testRegisterNonAlignedOnAlignedDeviceThrows"
+  ],
+  "TsFile-279": [
+   "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteTreeAndRead"
+  ],
+  "TsFile-280": [
+   "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteRecordAndRead"
+  ],
+  "TsFile-281": [
+   "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteAlignedAndRead"
+  ]
+ },
+ "revmap": {
+  "org.apache.tsfile.table.TestITsFileReader::testQuery1": "TsFile-232",
+  "org.apache.tsfile.table.TestITsFileReader::testQuery2": "TsFile-233",
+  "org.apache.tsfile.table.TestITsFileReader::testQuery2Exception": "TsFile-234",
+  "org.apache.tsfile.table.TestQueryException::testUnknownTableThrows": "TsFile-235",
+  "org.apache.tsfile.table.TestQueryException::testUnknownColumnThrows": "TsFile-236",
+  "org.apache.tsfile.table.TestQueryException::testTimeRangeClosedInterval": "TsFile-237",
+  "org.apache.tsfile.table.TestQueryException::testTimeRangeWindow": "TsFile-238",
+  "org.apache.tsfile.table.TestQueryException::testCaseInsensitive": "TsFile-239",
+  "org.apache.tsfile.table.TestReaderSchemaApi::testGetTableSchemasExisting": "TsFile-240",
+  "org.apache.tsfile.table.TestReaderSchemaApi::testGetTableSchemasNonExisting": "TsFile-241",
+  "org.apache.tsfile.table.TestReaderSchemaApi::testGetAllTableSchema": "TsFile-242",
+  "org.apache.tsfile.table.TestResultSetGetter::testGettersByColumnName": "TsFile-243",
+  "org.apache.tsfile.table.TestResultSetGetter::testGettersByColumnIndex": "TsFile-244",
+  "org.apache.tsfile.table.TestResultSetGetter::testIterator": "TsFile-245",
+  "org.apache.tsfile.table.TestResultSetGetter::testUnknownColumnThrows": "TsFile-246",
+  "org.apache.tsfile.table.TestResultSetGetter::testIndexOutOfBoundThrows": "TsFile-247",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderMissingNameThrows": "TsFile-248",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderMissingTypeThrows": "TsFile-249",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderEmptyNameThrows": "TsFile-250",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderDefaultCategoryIsField": "TsFile-251",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testDuplicateColumnThrows": "TsFile-252",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testFindColumnIndexCaseInsensitive": "TsFile-253",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testGetTsDataTypeInvalidByteThrows": "TsFile-254",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testTypePredicates": "TsFile-255",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testSerializeDeserializeRoundTrip": "TsFile-256",
+  "org.apache.tsfile.table.TestSchemaAndEnums::testCastIncompatibleThrows": "TsFile-257",
+  "org.apache.tsfile.table.TestTabletApi::testAddValueByColumnIndex": "TsFile-258",
+  "org.apache.tsfile.table.TestTabletApi::testAddValueWrongTypeThrows": "TsFile-259",
+  "org.apache.tsfile.table.TestTabletApi::testMaxRowNumberAndReset": "TsFile-260",
+  "org.apache.tsfile.table.TestTabletApi::testSerializeDeserializeRoundTrip": "TsFile-261",
+  "org.apache.tsfile.table.TestTagFilterMore::testInvalidRegexThrows": "TsFile-262",
+  "org.apache.tsfile.table.TestTagFilterMore::testNullRegexPatternThrows": "TsFile-263",
+  "org.apache.tsfile.table.TestTagFilterMore::testNullLikePatternThrows": "TsFile-264",
+  "org.apache.tsfile.table.TestTagFilterMore::testNonStringValueThrows": "TsFile-265",
+  "org.apache.tsfile.table.TestTagFilterMore::testBetweenAndReversedRange": "TsFile-266",
+  "org.apache.tsfile.table.TestTagFilterMore::testTagColumnCaseInsensitive": "TsFile-267",
+  "org.apache.tsfile.table.TestTsFileReaderBuilder::testNullFileThrows": "TsFile-268",
+  "org.apache.tsfile.table.TestTsFileReaderBuilder::testNonExistFileThrows": "TsFile-269",
+  "org.apache.tsfile.table.TestTsFileReaderBuilder::testDirectoryThrows": "TsFile-270",
+  "org.apache.tsfile.table.TestTsFileReaderBuilder::testGarbageFileThrows": "TsFile-271",
+  "org.apache.tsfile.table.TestTsFileWriterBuilder::testNullFileThrows": "TsFile-272",
+  "org.apache.tsfile.table.TestTsFileWriterBuilder::testDirectoryFileThrows": "TsFile-273",
+  "org.apache.tsfile.table.TestTsFileWriterBuilder::testNullSchemaThrows": "TsFile-274",
+  "org.apache.tsfile.table.TestTsFileWriterBuilder::testNonPositiveMemoryThresholdThrows": "TsFile-275",
+  "org.apache.tsfile.table.TestTsFileWriterBuilder::testSmallMemoryThresholdStillReadsBack": "TsFile-276",
+  "org.apache.tsfile.tree.TestTreeModelException::testDuplicateRegisterThrows": "TsFile-277",
+  "org.apache.tsfile.tree.TestTreeModelException::testRegisterNonAlignedOnAlignedDeviceThrows": "TsFile-278",
+  "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteTreeAndRead": "TsFile-279",
+  "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteRecordAndRead": "TsFile-280",
+  "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteAlignedAndRead": "TsFile-281"
+ },
+ "aliases": {
+  "Java-Table-001": [
+   "org.apache.tsfile.table.TestITsFileReader::testQuery1"
+  ],
+  "Java-Table-002": [
+   "org.apache.tsfile.table.TestITsFileReader::testQuery2"
+  ],
+  "Java-Table-004": [
+   "org.apache.tsfile.table.TestITsFileReader::testQuery2Exception"
+  ],
+  "Java-Table-005": [
+   "org.apache.tsfile.table.TestQueryException::testUnknownTableThrows"
+  ],
+  "Java-Table-006": [
+   "org.apache.tsfile.table.TestQueryException::testUnknownColumnThrows"
+  ],
+  "Java-Table-007": [
+   "org.apache.tsfile.table.TestQueryException::testTimeRangeClosedInterval"
+  ],
+  "Java-Table-008": [
+   "org.apache.tsfile.table.TestQueryException::testTimeRangeWindow"
+  ],
+  "Java-Table-009": [
+   "org.apache.tsfile.table.TestQueryException::testCaseInsensitive"
+  ],
+  "Java-Table-010": [
+   "org.apache.tsfile.table.TestReaderSchemaApi::testGetTableSchemasExisting"
+  ],
+  "Java-Table-011": [
+   "org.apache.tsfile.table.TestReaderSchemaApi::testGetTableSchemasNonExisting"
+  ],
+  "Java-Table-012": [
+   "org.apache.tsfile.table.TestReaderSchemaApi::testGetAllTableSchema"
+  ],
+  "Java-Table-013": [
+   "org.apache.tsfile.table.TestResultSetGetter::testGettersByColumnName"
+  ],
+  "Java-Table-014": [
+   "org.apache.tsfile.table.TestResultSetGetter::testGettersByColumnIndex"
+  ],
+  "Java-Table-015": [
+   "org.apache.tsfile.table.TestResultSetGetter::testIterator"
+  ],
+  "Java-Table-016": [
+   "org.apache.tsfile.table.TestResultSetGetter::testUnknownColumnThrows"
+  ],
+  "Java-Table-017": [
+   "org.apache.tsfile.table.TestResultSetGetter::testIndexOutOfBoundThrows"
+  ],
+  "Java-Table-018": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderMissingNameThrows"
+  ],
+  "Java-Table-019": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderMissingTypeThrows"
+  ],
+  "Java-Table-020": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderEmptyNameThrows"
+  ],
+  "Java-Table-021": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderDefaultCategoryIsField"
+  ],
+  "Java-Table-022": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testDuplicateColumnThrows"
+  ],
+  "Java-Table-023": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testFindColumnIndexCaseInsensitive"
+  ],
+  "Java-Table-024": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testGetTsDataTypeInvalidByteThrows"
+  ],
+  "Java-Table-025": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testTypePredicates"
+  ],
+  "Java-Table-026": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testSerializeDeserializeRoundTrip"
+  ],
+  "Java-Table-027": [
+   "org.apache.tsfile.table.TestSchemaAndEnums::testCastIncompatibleThrows"
+  ],
+  "Java-Table-028": [
+   "org.apache.tsfile.table.TestTabletApi::testAddValueByColumnIndex"
+  ],
+  "Java-Table-029": [
+   "org.apache.tsfile.table.TestTabletApi::testAddValueWrongTypeThrows"
+  ],
+  "Java-Table-030": [
+   "org.apache.tsfile.table.TestTabletApi::testMaxRowNumberAndReset"
+  ],
+  "Java-Table-031": [
+   "org.apache.tsfile.table.TestTabletApi::testSerializeDeserializeRoundTrip"
+  ],
+  "Java-Table-032": [
+   "org.apache.tsfile.table.TestTagFilterMore::testInvalidRegexThrows"
+  ],
+  "Java-Table-033": [
+   "org.apache.tsfile.table.TestTagFilterMore::testNullRegexPatternThrows"
+  ],
+  "Java-Table-034": [
+   "org.apache.tsfile.table.TestTagFilterMore::testNullLikePatternThrows"
+  ],
+  "Java-Table-035": [
+   "org.apache.tsfile.table.TestTagFilterMore::testNonStringValueThrows"
+  ],
+  "Java-Table-036": [
+   "org.apache.tsfile.table.TestTagFilterMore::testBetweenAndReversedRange"
+  ],
+  "Java-Table-037": [
+   "org.apache.tsfile.table.TestTagFilterMore::testTagColumnCaseInsensitive"
+  ],
+  "Java-Table-038": [
+   "org.apache.tsfile.table.TestTsFileReaderBuilder::testNullFileThrows"
+  ],
+  "Java-Table-039": [
+   "org.apache.tsfile.table.TestTsFileReaderBuilder::testNonExistFileThrows"
+  ],
+  "Java-Table-040": [
+   "org.apache.tsfile.table.TestTsFileReaderBuilder::testDirectoryThrows"
+  ],
+  "Java-Table-041": [
+   "org.apache.tsfile.table.TestTsFileReaderBuilder::testGarbageFileThrows"
+  ],
+  "Java-Table-042": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testNullFileThrows"
+  ],
+  "Java-Table-043": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testDirectoryFileThrows"
+  ],
+  "Java-Table-044": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testNullSchemaThrows"
+  ],
+  "Java-Table-045": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testNonPositiveMemoryThresholdThrows"
+  ],
+  "Java-Table-046": [
+   "org.apache.tsfile.table.TestTsFileWriterBuilder::testSmallMemoryThresholdStillReadsBack"
+  ],
+  "Java-Tree-001": [
+   "org.apache.tsfile.tree.TestTreeModelException::testDuplicateRegisterThrows"
+  ],
+  "Java-Tree-002": [
+   "org.apache.tsfile.tree.TestTreeModelException::testRegisterNonAlignedOnAlignedDeviceThrows"
+  ],
+  "Java-Tree-003": [
+   "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteTreeAndRead"
+  ],
+  "Java-Tree-004": [
+   "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteRecordAndRead"
+  ],
+  "Java-Tree-005": [
+   "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteAlignedAndRead"
+  ]
+ }
+}

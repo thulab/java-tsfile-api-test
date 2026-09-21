@@ -140,6 +140,7 @@ public class TestITsFileReader {
     /**
      * 测试查询接口：query(String tableName, List<String> columnNames, long startTime, long endTime)
      */
+// 用例 JAVA-TABLE-001：表查询（指定表名、列名和时间范围）
     @Test
     public void testQuery1() throws IOException, ReadProcessException, NoTableException, NoMeasurementException {
         int actualRowNum = 0;
@@ -167,6 +168,7 @@ public class TestITsFileReader {
     /**
      * 测试查询接口：query(String tableName, List<String> columnNames, long startTime, long endTime, Filter tagFilter)
      */
+// 用例 JAVA-TABLE-002：带Tag过滤的高级查询
     @Test
     public void testQuery2() throws IOException, ReadProcessException, NoTableException, NoMeasurementException {
         TagFilterBuilder filterBuilder = new TagFilterBuilder(tableSchema);
@@ -226,28 +228,10 @@ public class TestITsFileReader {
 
     }
 
-//    @Test
-//    public void testGetTimeseriesMetadata() throws IOException, ReadProcessException, NoTableException, NoMeasurementException {
-//        try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();
-//             ResultSet rs =
-//                     reader.query(tableName, Arrays.asList("Tag1", "Tag2", "s1"), 0, 3)) {
-//
-//            System.out.println("=== Query with TagFilter ===");
-//            while (rs.next()) {
-//                long time = rs.getLong("Time");
-//                String id1 = rs.isNull("Tag1") ? null : rs.getString("Tag1");
-//                String id2 = rs.isNull("Tag2") ? null : rs.getString("Tag2");
-////                Boolean s1 = rs.isNull("s1") ? null : rs.getBoolean("s1");
-////                Boolean s2 = rs.isNull("s2") ? null : rs.getBoolean("s2");
-//
-//                System.out.printf("time=%d, Tag1=%s, Tag2=%s \n", time, id1, id2);
-//            }
-//        }
-//    }
-
     /**
      * 测试查询接口异常情况：query(String tableName, List<String> columnNames, long startTime, long endTime, Filter tagFilter)
      */
+// 用例 JAVA-TABLE-004：空表名查询异常校验
     @Test
     public void testQuery2Exception() {
         TagFilterBuilder filterBuilder = new TagFilterBuilder(tableSchema);

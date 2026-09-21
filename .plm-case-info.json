@@ -1,0 +1,302 @@
+{
+ "TsFile-232": {
+  "name": "表查询（指定表名、列名和时间范围）",
+  "nodeId": "org.apache.tsfile.table.TestITsFileReader::testQuery1",
+  "automationType": "java",
+  "plmDescription": "表查询（指定表名、列名和时间范围）"
+ },
+ "TsFile-233": {
+  "name": "带Tag过滤的高级查询",
+  "nodeId": "org.apache.tsfile.table.TestITsFileReader::testQuery2",
+  "automationType": "java",
+  "plmDescription": "带Tag过滤的高级查询"
+ },
+ "TsFile-234": {
+  "name": "空表名查询异常校验",
+  "nodeId": "org.apache.tsfile.table.TestITsFileReader::testQuery2Exception",
+  "automationType": "java",
+  "plmDescription": "空表名查询异常校验"
+ },
+ "TsFile-235": {
+  "name": "查询未知表抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestQueryException::testUnknownTableThrows",
+  "automationType": "java",
+  "plmDescription": "查询未知表抛出异常"
+ },
+ "TsFile-236": {
+  "name": "查询未知列抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestQueryException::testUnknownColumnThrows",
+  "automationType": "java",
+  "plmDescription": "查询未知列抛出异常"
+ },
+ "TsFile-237": {
+  "name": "闭区间时间范围查询",
+  "nodeId": "org.apache.tsfile.table.TestQueryException::testTimeRangeClosedInterval",
+  "automationType": "java",
+  "plmDescription": "闭区间时间范围查询"
+ },
+ "TsFile-238": {
+  "name": "时间窗口查询",
+  "nodeId": "org.apache.tsfile.table.TestQueryException::testTimeRangeWindow",
+  "automationType": "java",
+  "plmDescription": "时间窗口查询"
+ },
+ "TsFile-239": {
+  "name": "大小写不敏感校验",
+  "nodeId": "org.apache.tsfile.table.TestQueryException::testCaseInsensitive",
+  "automationType": "java",
+  "plmDescription": "大小写不敏感校验"
+ },
+ "TsFile-240": {
+  "name": "获取已存在表Schema",
+  "nodeId": "org.apache.tsfile.table.TestReaderSchemaApi::testGetTableSchemasExisting",
+  "automationType": "java",
+  "plmDescription": "获取已存在表Schema"
+ },
+ "TsFile-241": {
+  "name": "获取不存在表Schema返回空",
+  "nodeId": "org.apache.tsfile.table.TestReaderSchemaApi::testGetTableSchemasNonExisting",
+  "automationType": "java",
+  "plmDescription": "获取不存在表Schema返回空"
+ },
+ "TsFile-242": {
+  "name": "获取全部表Schema列表",
+  "nodeId": "org.apache.tsfile.table.TestReaderSchemaApi::testGetAllTableSchema",
+  "automationType": "java",
+  "plmDescription": "获取全部表Schema列表"
+ },
+ "TsFile-243": {
+  "name": "按列名获取查询结果",
+  "nodeId": "org.apache.tsfile.table.TestResultSetGetter::testGettersByColumnName",
+  "automationType": "java",
+  "plmDescription": "按列名获取查询结果"
+ },
+ "TsFile-244": {
+  "name": "按列索引获取查询结果",
+  "nodeId": "org.apache.tsfile.table.TestResultSetGetter::testGettersByColumnIndex",
+  "automationType": "java",
+  "plmDescription": "按列索引获取查询结果"
+ },
+ "TsFile-245": {
+  "name": "结果集迭代器遍历",
+  "nodeId": "org.apache.tsfile.table.TestResultSetGetter::testIterator",
+  "automationType": "java",
+  "plmDescription": "结果集迭代器遍历"
+ },
+ "TsFile-246": {
+  "name": "获取未知列抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestResultSetGetter::testUnknownColumnThrows",
+  "automationType": "java",
+  "plmDescription": "获取未知列抛出异常"
+ },
+ "TsFile-247": {
+  "name": "列索引越界抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestResultSetGetter::testIndexOutOfBoundThrows",
+  "automationType": "java",
+  "plmDescription": "列索引越界抛出异常"
+ },
+ "TsFile-248": {
+  "name": "缺少列名抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderMissingNameThrows",
+  "automationType": "java",
+  "plmDescription": "缺少列名抛出异常"
+ },
+ "TsFile-249": {
+  "name": "缺少列类型抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderMissingTypeThrows",
+  "automationType": "java",
+  "plmDescription": "缺少列类型抛出异常"
+ },
+ "TsFile-250": {
+  "name": "空列名抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderEmptyNameThrows",
+  "automationType": "java",
+  "plmDescription": "空列名抛出异常"
+ },
+ "TsFile-251": {
+  "name": "默认列类型为Field",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testBuilderDefaultCategoryIsField",
+  "automationType": "java",
+  "plmDescription": "默认列类型为Field"
+ },
+ "TsFile-252": {
+  "name": "重复列名抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testDuplicateColumnThrows",
+  "automationType": "java",
+  "plmDescription": "重复列名抛出异常"
+ },
+ "TsFile-253": {
+  "name": "按列名查找列索引（大小写不敏感）",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testFindColumnIndexCaseInsensitive",
+  "automationType": "java",
+  "plmDescription": "按列名查找列索引（大小写不敏感）"
+ },
+ "TsFile-254": {
+  "name": "非法字节编码异常",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testGetTsDataTypeInvalidByteThrows",
+  "automationType": "java",
+  "plmDescription": "非法字节编码异常"
+ },
+ "TsFile-255": {
+  "name": "列类型判断谓词验证",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testTypePredicates",
+  "automationType": "java",
+  "plmDescription": "列类型判断谓词验证"
+ },
+ "TsFile-256": {
+  "name": "Schema序列化往返一致性",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testSerializeDeserializeRoundTrip",
+  "automationType": "java",
+  "plmDescription": "Schema序列化往返一致性"
+ },
+ "TsFile-257": {
+  "name": "不兼容类型转换抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestSchemaAndEnums::testCastIncompatibleThrows",
+  "automationType": "java",
+  "plmDescription": "不兼容类型转换抛出异常"
+ },
+ "TsFile-258": {
+  "name": "按列索引添加数据",
+  "nodeId": "org.apache.tsfile.table.TestTabletApi::testAddValueByColumnIndex",
+  "automationType": "java",
+  "plmDescription": "按列索引添加数据"
+ },
+ "TsFile-259": {
+  "name": "类型不匹配抛出异常",
+  "nodeId": "org.apache.tsfile.table.TestTabletApi::testAddValueWrongTypeThrows",
+  "automationType": "java",
+  "plmDescription": "类型不匹配抛出异常"
+ },
+ "TsFile-260": {
+  "name": "最大行数限制与重置",
+  "nodeId": "org.apache.tsfile.table.TestTabletApi::testMaxRowNumberAndReset",
+  "automationType": "java",
+  "plmDescription": "最大行数限制与重置"
+ },
+ "TsFile-261": {
+  "name": "Tablet序列化往返一致性",
+  "nodeId": "org.apache.tsfile.table.TestTabletApi::testSerializeDeserializeRoundTrip",
+  "automationType": "java",
+  "plmDescription": "Tablet序列化往返一致性"
+ },
+ "TsFile-262": {
+  "name": "非法正则表达式过滤异常",
+  "nodeId": "org.apache.tsfile.table.TestTagFilterMore::testInvalidRegexThrows",
+  "automationType": "java",
+  "plmDescription": "非法正则表达式过滤异常"
+ },
+ "TsFile-263": {
+  "name": "空正则模式异常",
+  "nodeId": "org.apache.tsfile.table.TestTagFilterMore::testNullRegexPatternThrows",
+  "automationType": "java",
+  "plmDescription": "空正则模式异常"
+ },
+ "TsFile-264": {
+  "name": "空Like模式异常",
+  "nodeId": "org.apache.tsfile.table.TestTagFilterMore::testNullLikePatternThrows",
+  "automationType": "java",
+  "plmDescription": "空Like模式异常"
+ },
+ "TsFile-265": {
+  "name": "非String类型Tag值异常",
+  "nodeId": "org.apache.tsfile.table.TestTagFilterMore::testNonStringValueThrows",
+  "automationType": "java",
+  "plmDescription": "非String类型Tag值异常"
+ },
+ "TsFile-266": {
+  "name": "反向区间BetweenAnd过滤",
+  "nodeId": "org.apache.tsfile.table.TestTagFilterMore::testBetweenAndReversedRange",
+  "automationType": "java",
+  "plmDescription": "反向区间BetweenAnd过滤"
+ },
+ "TsFile-267": {
+  "name": "Tag列大小写不敏感匹配",
+  "nodeId": "org.apache.tsfile.table.TestTagFilterMore::testTagColumnCaseInsensitive",
+  "automationType": "java",
+  "plmDescription": "Tag列大小写不敏感匹配"
+ },
+ "TsFile-268": {
+  "name": "空文件路径Reader异常",
+  "nodeId": "org.apache.tsfile.table.TestTsFileReaderBuilder::testNullFileThrows",
+  "automationType": "java",
+  "plmDescription": "空文件路径Reader异常"
+ },
+ "TsFile-269": {
+  "name": "不存在文件Reader异常",
+  "nodeId": "org.apache.tsfile.table.TestTsFileReaderBuilder::testNonExistFileThrows",
+  "automationType": "java",
+  "plmDescription": "不存在文件Reader异常"
+ },
+ "TsFile-270": {
+  "name": "目录路径Reader异常",
+  "nodeId": "org.apache.tsfile.table.TestTsFileReaderBuilder::testDirectoryThrows",
+  "automationType": "java",
+  "plmDescription": "目录路径Reader异常"
+ },
+ "TsFile-271": {
+  "name": "损坏文件Reader异常",
+  "nodeId": "org.apache.tsfile.table.TestTsFileReaderBuilder::testGarbageFileThrows",
+  "automationType": "java",
+  "plmDescription": "损坏文件Reader异常"
+ },
+ "TsFile-272": {
+  "name": "空文件路径Writer异常",
+  "nodeId": "org.apache.tsfile.table.TestTsFileWriterBuilder::testNullFileThrows",
+  "automationType": "java",
+  "plmDescription": "空文件路径Writer异常"
+ },
+ "TsFile-273": {
+  "name": "目录路径Writer异常",
+  "nodeId": "org.apache.tsfile.table.TestTsFileWriterBuilder::testDirectoryFileThrows",
+  "automationType": "java",
+  "plmDescription": "目录路径Writer异常"
+ },
+ "TsFile-274": {
+  "name": "空Schema Writer异常",
+  "nodeId": "org.apache.tsfile.table.TestTsFileWriterBuilder::testNullSchemaThrows",
+  "automationType": "java",
+  "plmDescription": "空Schema Writer异常"
+ },
+ "TsFile-275": {
+  "name": "非正内存阈值异常",
+  "nodeId": "org.apache.tsfile.table.TestTsFileWriterBuilder::testNonPositiveMemoryThresholdThrows",
+  "automationType": "java",
+  "plmDescription": "非正内存阈值异常"
+ },
+ "TsFile-276": {
+  "name": "极小内存阈值读写验证",
+  "nodeId": "org.apache.tsfile.table.TestTsFileWriterBuilder::testSmallMemoryThresholdStillReadsBack",
+  "automationType": "java",
+  "plmDescription": "极小内存阈值读写验证"
+ },
+ "TsFile-277": {
+  "name": "重复注册设备异常",
+  "nodeId": "org.apache.tsfile.tree.TestTreeModelException::testDuplicateRegisterThrows",
+  "automationType": "java",
+  "plmDescription": "重复注册设备异常"
+ },
+ "TsFile-278": {
+  "name": "对齐设备注册非对齐序列异常",
+  "nodeId": "org.apache.tsfile.tree.TestTreeModelException::testRegisterNonAlignedOnAlignedDeviceThrows",
+  "automationType": "java",
+  "plmDescription": "对齐设备注册非对齐序列异常"
+ },
+ "TsFile-279": {
+  "name": "树模型写入读取验证",
+  "nodeId": "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteTreeAndRead",
+  "automationType": "java",
+  "plmDescription": "树模型写入读取验证"
+ },
+ "TsFile-280": {
+  "name": "记录模型写入读取验证",
+  "nodeId": "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteRecordAndRead",
+  "automationType": "java",
+  "plmDescription": "记录模型写入读取验证"
+ },
+ "TsFile-281": {
+  "name": "对齐模型写入读取验证",
+  "nodeId": "org.apache.tsfile.tree.TestTreeModelWriteRead::testWriteAlignedAndRead",
+  "automationType": "java",
+  "plmDescription": "对齐模型写入读取验证"
+ }
+}

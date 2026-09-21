@@ -47,6 +47,7 @@ public class TestTreeModelWriteRead {
   }
 
   /** writeTree 分批 flush 写入，读回逐行校验时间戳与抽样列值。 */
+// 用例 JAVA-TREE-003：树模型写入读取验证
   @Test
   public void testWriteTreeAndRead() throws Exception {
     if (f.exists()) {
@@ -97,6 +98,7 @@ public class TestTreeModelWriteRead {
   }
 
   /** writeRecord 单行写入，读回校验。 */
+// 用例 JAVA-TREE-004：记录模型写入读取验证
   @Test
   public void testWriteRecordAndRead() throws Exception {
     if (f.exists()) {
@@ -131,6 +133,7 @@ public class TestTreeModelWriteRead {
   }
 
   /** registerAlignedTimeseries + writeAligned 对齐写入路径。 */
+// 用例 JAVA-TREE-005：对齐模型写入读取验证
   @Test
   public void testWriteAlignedAndRead() throws Exception {
     if (f.exists()) {

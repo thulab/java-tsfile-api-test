@@ -34,6 +34,7 @@ public class TestTsFileReaderBuilder {
     garbage.delete();
   }
 
+// 用例 JAVA-TABLE-038：空文件路径Reader异常
   @Test
   public void testNullFileThrows() {
     IllegalArgumentException e =
@@ -41,6 +42,7 @@ public class TestTsFileReaderBuilder {
     Assert.assertEquals(e.getMessage(), "The file must be a non-null and non-directory File.");
   }
 
+// 用例 JAVA-TABLE-039：不存在文件Reader异常
   @Test
   public void testNonExistFileThrows() {
     File notExist = FSFactoryProducer.getFSFactory().getFile("data/tsfile/definitely_not_exist.tsfile");
@@ -49,6 +51,7 @@ public class TestTsFileReaderBuilder {
     Assert.assertEquals(e.getMessage(), "The file must be a non-null and non-directory File.");
   }
 
+// 用例 JAVA-TABLE-040：目录路径Reader异常
   @Test
   public void testDirectoryThrows() {
     File dir = FSFactoryProducer.getFSFactory().getFile("data/tsfile");
@@ -58,6 +61,7 @@ public class TestTsFileReaderBuilder {
   }
 
   /** 非法格式文件：build 时读文件尾元数据应抛 NotCompatibleTsFileException（TsFileRuntimeException 子类）。 */
+// 用例 JAVA-TABLE-041：损坏文件Reader异常
   @Test
   public void testGarbageFileThrows() {
     Assert.expectThrows(NotCompatibleTsFileException.class, () -> new TsFileReaderBuilder().file(garbage).build());

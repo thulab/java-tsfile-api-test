@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": ".plm-classification.json",
+  "title": "PLM Test Case Scene Classification Rules",
+  "description": "Defines how test cases from this program are classified into PLM's 3-level scene hierarchy.",
+  "version": "1.0",
+  "program": {
+    "name": "java-tsfile-api-test",
+    "language": "Java",
+    "automationType": "ts-java"
+  },
+  "hierarchy": {
+    "L1": "Java",
+    "L2": {
+      "Table 模型": {
+        "caseIdPattern": ".table.",
+        "description": "Cases with org.apache.tsfile.table in FQCN"
+      },
+      "Tree 模型": {
+        "caseIdPattern": ".tree.",
+        "description": "Cases with org.apache.tsfile.tree in FQCN"
+      }
+    },
+    "L3": {
+      "description": "Interface type classification by CASE_ID keyword matching. Applied in priority order.",
+      "rules": [
+        {
+          "name": "异常/校验",
+          "priority": 1,
+          "keywords": ["exception", "error", "throw", "invalid", "illegal", "null", "empty", "fail", "reject", "missing", "wrong_type", "duplicate", "nonexist", "null_", "crash", "raises", "conflict", "inconsistent", "overlap", "stale", "shard", "index_out_of_bound", "out_of_bound"],
+          "matchField": "caseId",
+          "caseSensitive": false
+        },
+        {
+          "name": "写入接口",
+          "priority": 2,
+          "keywords": ["write", "writer", "tablet", "add_value", "add_column", "insert", "builder", "build"],
+          "matchField": "caseId",
+          "caseSensitive": false
+        },
+        {
+          "name": "查询接口",
+          "priority": 3,
+          "keywords": ["query", "reader", "read", "get_timeseries", "get_table", "get_all", "list_timeseries", "select", "filter", "tag_filter", "getitem", "loc", "iloc", "get_value", "iterator", "to_dataframe", "load", "device_ids", "get_timestamps", "getter"],
+          "matchField": "caseId",
+          "caseSensitive": false
+        },
+        {
+          "name": "Schema/Metadata",
+          "priority": 4,
+          "keywords": ["schema", "metadata", "enum", "column_type", "column_name", "table_schema", "series_name", "field", "measurement", "timeseries", "timestamp", "column"],
+          "matchField": "caseId",
+          "caseSensitive": false
+        },
+        {
+          "name": "查询接口",
+          "priority": 99,
+          "keywords": [],
+          "matchField": "caseId",
+          "caseSensitive": false,
+          "description": "Default fallback"
+        }
+      ]
+    }
+  },
+  "sceneBinding": {
+    "apiBase": "http://localhost:8083/api/open",
+    "endpoint": "/test-cases/{caseDbId}/scenes/{sceneId}",
+    "auth": "Bearer {pat_token}"
+  },
+  "usage": {
+    "byAgent": "For each test case from list-cases --json, determine L2 by CASE_ID pattern, then L3 by applying rules in priority order to lowercased CASE_ID. Use Open API to bind cases to scenes."
+  }
+}

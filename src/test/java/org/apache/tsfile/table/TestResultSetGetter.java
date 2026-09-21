@@ -41,6 +41,7 @@ public class TestResultSetGetter {
   }
 
   /** 全类型 getter：按列名取值，与写入的确定性期望值逐行逐列比对。 */
+// 用例 JAVA-TABLE-013：按列名获取查询结果
   @Test
   public void testGettersByColumnName() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();
@@ -62,6 +63,7 @@ public class TestResultSetGetter {
   }
 
   /** 全类型 getter：按列索引取值（Time=1，业务列从 2 开始），逐行逐列比对。 */
+// 用例 JAVA-TABLE-014：按列索引获取查询结果
   @Test
   public void testGettersByColumnIndex() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();
@@ -81,6 +83,7 @@ public class TestResultSetGetter {
   }
 
   /** iterator() 可遍历结果集。 */
+// 用例 JAVA-TABLE-015：结果集迭代器遍历
   @Test
   public void testIterator() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();
@@ -90,6 +93,7 @@ public class TestResultSetGetter {
   }
 
   /** 列名不存在时取值抛异常。 */
+// 用例 JAVA-TABLE-016：获取未知列抛出异常
   @Test
   public void testUnknownColumnThrows() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();
@@ -100,6 +104,7 @@ public class TestResultSetGetter {
   }
 
   /** 列索引越界时取值抛异常。 */
+// 用例 JAVA-TABLE-017：列索引越界抛出异常
   @Test
   public void testIndexOutOfBoundThrows() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();

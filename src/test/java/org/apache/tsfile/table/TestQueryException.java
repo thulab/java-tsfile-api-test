@@ -39,6 +39,7 @@ public class TestQueryException {
     }
   }
 
+// 用例 JAVA-TABLE-005：查询未知表抛出异常
   @Test
   public void testUnknownTableThrows() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build()) {
@@ -51,6 +52,7 @@ public class TestQueryException {
     }
   }
 
+// 用例 JAVA-TABLE-006：查询未知列抛出异常
   @Test
   public void testUnknownColumnThrows() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build()) {
@@ -66,6 +68,7 @@ public class TestQueryException {
   }
 
   /** 时间范围为闭区间：start==end==某存在的时间戳，应命中该行。 */
+// 用例 JAVA-TABLE-007：闭区间时间范围查询
   @Test
   public void testTimeRangeClosedInterval() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();
@@ -80,6 +83,7 @@ public class TestQueryException {
   }
 
   /** 时间窗口 [3,6] 应命中 Time∈{3,4,5,6} 共 4 行。 */
+// 用例 JAVA-TABLE-008：时间窗口查询
   @Test
   public void testTimeRangeWindow() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();
@@ -95,6 +99,7 @@ public class TestQueryException {
   }
 
   /** 表名/列名大小写不敏感：用大写表名和大写列名查询应返回相同结果。 */
+// 用例 JAVA-TABLE-009：大小写不敏感校验
   @Test
   public void testCaseInsensitive() throws Exception {
     try (ITsFileReader reader = new TsFileReaderBuilder().file(f).build();

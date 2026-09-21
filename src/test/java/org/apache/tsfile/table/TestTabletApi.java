@@ -35,6 +35,7 @@ public class TestTabletApi {
   }
 
   /** 按列索引 addValue 全类型写入，再读回逐值校验（用 Time 作 seed，避免 device 排序问题）。 */
+// 用例 JAVA-TABLE-028：按列索引添加数据
   @Test
   public void testAddValueByColumnIndex() throws Exception {
     if (f.exists()) {
@@ -105,6 +106,7 @@ public class TestTabletApi {
    * 按列索引 addValue 类型不匹配。列索引 5 = S4 = FLOAT，用 long 重载写入：long 重载先校验目标列是否为
    * long 数组，发现是 float 数组即报错，文案给出 long 重载期望的类型串 INT64/TIMESTAMP（源码逻辑）。
    */
+// 用例 JAVA-TABLE-029：类型不匹配抛出异常
   @Test
   public void testAddValueWrongTypeThrows() {
     Tablet tablet = new Tablet(TestDataUtils.COLUMN_NAMES, TestDataUtils.DATA_TYPES);
@@ -115,6 +117,7 @@ public class TestTabletApi {
   }
 
   /** maxRowNumber 构造 + reset 语义。 */
+// 用例 JAVA-TABLE-030：最大行数限制与重置
   @Test
   public void testMaxRowNumberAndReset() {
     Tablet tablet = new Tablet(TestDataUtils.COLUMN_NAMES, TestDataUtils.DATA_TYPES, 8);
@@ -129,6 +132,7 @@ public class TestTabletApi {
   }
 
   /** serialize / deserialize 往返：反序列化后行数、时间戳、各列值数组应与原始一致（语义校验）。 */
+// 用例 JAVA-TABLE-031：Tablet序列化往返一致性
   @Test
   public void testSerializeDeserializeRoundTrip() throws Exception {
     // serialize 依赖 columnCategories，故用带 category 的构造（Tablet(List,List) 简构造不初始化 categories，无法序列化）

@@ -5,6 +5,21 @@
 # ============================================================================
 set -u
 
+# —— tsfile 依赖版本解析（R1 修复，2026-10-10）——
+# 从产品源码 ../tsfile/pom.xml 读取当前 version，注入所有测试侧 mvn 调用，
+# 防止解析到 m2 中过期的 tsfile jar（2026-10-10 审查发现：曾固定 2.3.2-SNAPSHOT）。
+# 可用 TSFILE_VERSION 环境变量显式覆盖；解析块只依赖 python3，list-cases 不受影响。
+_PRODUCT_POM="../tsfile/pom.xml"
+TSFILE_VER=""
+if [ -f "$_PRODUCT_POM" ]; then
+  TSFILE_VER=$(python3 -c "import xml.etree.ElementTree as ET;root=ET.parse('$_PRODUCT_POM').getroot();vals=[e.text for e in list(root) if e.tag.split('}')[-1]=='version'];print(vals[0] if vals else '')" 2>/dev/null || true)
+fi
+if [ -n "${TSFILE_VERSION:-}" ]; then TSFILE_VER="$TSFILE_VERSION"; fi
+if [ -z "$TSFILE_VER" ] || [ "$TSFILE_VER" = "None" ]; then
+  echo "[start.sh] WARNING: 无法从 $_PRODUCT_POM 解析产品版本；mvn 类命令将失败（可用 TSFILE_VERSION=… 覆盖）" >&2
+  TSFILE_VER="UNSET"
+fi
+
 CMD="${1:-help}"
 TGT="${2:-}"
 REPORTS_DIR="${REPORT_DIR:-${TSFILE_REPORT_DIR:-reports}}"
@@ -38,8 +53,8 @@ prepare() {
   [ -f "$ts/pom.xml" ] || { echo "ERROR: $ts 不存在" >&2; return 1; }
   echo "=== 安装 TsFile JAR 到本地 Maven 仓库 ==="
   (cd "$ts" && mvn install -P with-java -DskipTests -Dspotless.check.skip=true -q) || { echo "ERROR: TsFile 编译失败" >&2; return 1; }
-  echo "=== 编译测试项目 + 下载依赖 ==="
-  mvn compile test-compile 2>&1 | tail -3
+  echo "=== 编译测试项目 + 下载依赖（tsfile.version=$TSFILE_VER）==="
+  mvn -Dtsfile.version="$TSFILE_VER" compile test-compile 2>&1 | tail -3
   echo "=== prepare 完成 ==="
 }
 
@@ -90,13 +105,13 @@ print(json.dumps(cases,ensure_ascii=False,indent=2))
 PYEOF
 }
 
-all()  { mkdir -p "$REPORTS_DIR"; mvn test 2>&1; echo "=== target/surefire-reports ==="; }
+all()  { mkdir -p "$REPORTS_DIR"; mvn -Dtsfile.version="$TSFILE_VER" test 2>&1; echo "=== target/surefire-reports ==="; }
 page() {
   case "$1" in table) PKG="org.apache.tsfile.table";; tree) PKG="org.apache.tsfile.tree";;
     *) echo "Unknown: $1" >&2; return 2;; esac
   CLASSES=$(find src/test/java -path "*${PKG//./\/*}" -name '*Test*.java' 2>/dev/null | sed 's|src/test/java/||;s|/|.|g;s|\.java$||' | paste -sd '+' -)
   [ -z "$CLASSES" ] && { echo "No test classes for: $1" >&2; return 1; }
-  mkdir -p "$REPORTS_DIR"; mvn test -Dtest="$CLASSES" -DfailIfNoTests=false 2>&1
+  mkdir -p "$REPORTS_DIR"; mvn -Dtsfile.version="$TSFILE_VER" test -Dtest="$CLASSES" -DfailIfNoTests=false 2>&1
 }
 
 case_one() {
@@ -106,7 +121,7 @@ case_one() {
   if [ ! -f "$mf" ]; then echo "[start.sh] .plm-case-id-map.json missing, restore backup" >&2; return 5; fi
   local sfp; sfp=$(python3 map_lookup.py "$1" 2>/dev/null)
   rm -rf target/surefire-reports
-  timeout 240 mvn test -Dtest="$sfp" -Dsurefire.failIfNoSpecifiedTests=false -DfailIfNoTests=false 2>&1
+  timeout 240 mvn -Dtsfile.version="$TSFILE_VER" test -Dtest="$sfp" -Dsurefire.failIfNoSpecifiedTests=false -DfailIfNoTests=false 2>&1
   local mvn_rc=$?
   local post_rc=0
   python3 -c "
@@ -196,7 +211,7 @@ except: pass
 print(json.dumps(rev))
 " 2>/dev/null)
   rm -rf target/surefire-reports
-  timeout 240 mvn test -Dtest="$sfps" -Dsurefire.failIfNoSpecifiedTests=false -DfailIfNoTests=false 2>&1
+  timeout 240 mvn -Dtsfile.version="$TSFILE_VER" test -Dtest="$sfps" -Dsurefire.failIfNoSpecifiedTests=false -DfailIfNoTests=false 2>&1
   local mvn_rc=$?
   local post_rc=0
   python3 -c "

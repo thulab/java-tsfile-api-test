@@ -12,6 +12,13 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--
+            tsfile 依赖版本：由 start.sh 从产品源码 ../tsfile/pom.xml 动态解析并注入
+            （mvn -Dtsfile.version=…）。占位值 UNSET 保证未注入时构建直接失败（防止静默
+            使用 m2 中的过期版本——2026-10-10 R1 修复）。直接手工跑 mvn 时请显式指定：
+            mvn -Dtsfile.version=<产品版本> test
+        -->
+        <tsfile.version>UNSET</tsfile.version>
     </properties>
 
     <dependencies>
@@ -19,7 +26,7 @@
         <dependency>
             <groupId>org.apache.tsfile</groupId>
             <artifactId>tsfile</artifactId>
-            <version>2.3.2-SNAPSHOT</version>
+            <version>${tsfile.version}</version>
         </dependency>
         <!--   testng依赖     -->
         <dependency>

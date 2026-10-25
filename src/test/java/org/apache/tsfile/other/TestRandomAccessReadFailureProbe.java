@@ -118,7 +118,8 @@ public class TestRandomAccessReadFailureProbe {
 
     @Override
     public InputStream wrapAsInputStream() {
-      return new ByteArrayInputStream(data);
+      int start = (int) Math.min(Math.max(pos, 0), data.length);
+      return new ByteArrayInputStream(data, start, data.length - start);
     }
 
     @Override
